@@ -518,6 +518,12 @@
     width: 32px;
   }
 }
+@media (max-width: 480px) {
+  .lets-talk-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
 
 /* Desktop default (already working) */
 @media (max-width: 767px) {
