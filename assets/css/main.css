@@ -469,6 +469,55 @@
     padding: 6px 10px;
   }
 }
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .header__hamburger {
+    display: block;
+  }
+
+  .site-name {
+    font-size: 16px;
+  }
+
+  .site-logo {
+    width: 40px;
+  }
+
+  .header__left {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    gap: 10px;
+  }
+
+  /* ✅ Fix Let's Talk button */
+  .lets-talk-btn {
+    font-size: 13px;
+    padding: 8px 12px;
+    border-radius: 25px;
+    margin-left: auto;   /* automatically right side chala jayega */
+    position: static;    /* ab overlap nahi karega */
+    flex-shrink: 0;      /* text ya logo ko squash nahi karega */
+  }
+}
+
+/* Even smaller iPhones (≤480px) */
+@media (max-width: 480px) {
+  .lets-talk-btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .site-name {
+    font-size: 14px;
+  }
+
+  .site-logo {
+    width: 32px;
+  }
+}
 
 /* Desktop default (already working) */
 @media (max-width: 767px) {
