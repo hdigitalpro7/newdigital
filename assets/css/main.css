@@ -390,30 +390,40 @@
   font-size: 14px;
 }
 
-/* Mobile responsive */
-@media (max-width: 768px) {
-  .lets-talk-btn {
-    font-size: 12px;
-    padding: 8px 12px;
-    border-radius: 25px;
-    position: absolute;
-    top: 10px;
-    left: 310px;
-    margin-top: 10px
-    ;
+/* Tablet & Large Mobile (≤ 992px) */
+@media (max-width: 992px) {
+  .header__hamburger {
+    display: block; /* show menu toggle */
   }
 
-  .lets-talk-btn i {
-    font-size: 12px;
+  .site-name {
+    font-size: 18px;
+  }
+
+  .site-logo {
+    width: 44px;
+  }
+
+  .header__left {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .lets-talk-btn {
+    font-size: 14px;
+    padding: 8px 16px;
+    border-radius: 25px;
+    margin-left: auto;
+    position: relative;
+    top: auto;
+    left: auto;
   }
 }
 
-/* Mobile responsive */
+/* Standard Mobile (≤ 768px) */
 @media (max-width: 768px) {
-  .header__hamburger {
-    display: block; /* Show menu button on mobile */
-  }
-
   .site-name {
     font-size: 16px;
   }
@@ -422,10 +432,41 @@
     width: 40px;
   }
 
-  .header__left {
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
+  .lets-talk-btn {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+}
+
+/* Small Mobile (≤ 576px → iPhone SE, older Androids) */
+@media (max-width: 576px) {
+  .site-name {
+    font-size: 15px;
+  }
+
+  .site-logo {
+    width: 34px;
+  }
+
+  .lets-talk-btn {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+}
+
+/* Extra Small (≤ 400px → iPhone Mini, very small screens) */
+@media (max-width: 400px) {
+  .site-name {
+    font-size: 14px;
+  }
+
+  .site-logo {
+    width: 28px;
+  }
+
+  .lets-talk-btn {
+    font-size: 11px;
+    padding: 6px 10px;
   }
 }
 
