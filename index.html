@@ -3,114 +3,186 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Loading...</title>
+  <title>Sign Up</title>
   <style>
     body {
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #fefee9;
       margin: 0;
       padding: 0;
-      height: 100vh;
-      display: flex;
-      flex-direction: column; 
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #fefee9, #fff5d7);
-      font-family: Arial, sans-serif;
-    }
-
-    .loader {
-      position: relative;
-      width: 150px;
-      height: 150px;
       display: flex;
       justify-content: center;
       align-items: center;
+      min-height: 100vh;
     }
 
-    .spinner {
-      border: 8px solid #f3f3f3;
-      border-top: 8px solid #ff4500;
-      border-radius: 50%;
-      width: 150px;
-      height: 150px;
-      animation: spin 1s linear infinite;
-      box-shadow: 0 0 18px rgba(255, 69, 0, 0.4);
-      position: absolute;
-      top: 0;
-      left: 0;
+    .signup-card {
+      width: 100%;
+      max-width: 380px;
+      background: #fff;
+      border-radius: 12px;
+      padding: 40px 35px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .countdown {
-      position: absolute;
-      font-size: 65px;
-      font-weight: bold;
-      color: #ff4500;
+    .brand {
       text-align: center;
-      margin-top: 10px;
-      opacity: 1;
-      transform: scale(1);
-      transition: transform 0.4s ease, opacity 0.4s ease;
-    }
-
-    .zoom {
-      transform: scale(1.5);
-      opacity: 0.6;
-    }
-
-    .brand-text {
-      margin-top:60px;
-      font-size: 32px;
-      font-weight: bold;
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 20px;
       color: #202124;
-      margin-left: 20px;
     }
 
-    .brand-text span {
+    .brand span {
+      color: #ff4500;
+    }
+
+    .signup-card h2 {
+      text-align: center;
+      margin-bottom: 8px;
+      font-size: 22px;
+      font-weight: 600;
+      color: #202124;
+    }
+
+    .signup-card p {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 25px;
+      color: #5f6368;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #013220;
+      margin-bottom: 6px;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dadce0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+
+    .input-group input:focus {
+      border-color: #ff4500;
+      box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2);
+      outline: none;
+    }
+
+    .signup-card button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: none;
+      border-radius: 8px;
+      background: #ff4500;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .signup-card button:hover {
+      background: #e03e00;
+    }
+
+    .login-link {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 18px;
+      color: #5f6368;
+    }
+
+    .login-link a {
+      color: #013220;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-link a:hover {
+      text-decoration: underline;
       color: #ff4500;
     }
   </style>
 </head>
 <body>
 
-  <div class="loader">
-    <div class="spinner"></div>
-    <div class="countdown" id="countdown">3</div>
+  <div class="signup-card" id="signupCard">
+    <div class="brand">Print & Graphics <span>Studio</span></div>
+    <h2 style="margin-top: -20px;">Create your Account</h2>
+
+    <form id="signupForm">
+      <div class="input-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Create a password" required>
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="login-link">
+      Already have an account? <a href="#">Log In</a>
+    </div>
   </div>
 
-  <div class="brand-text">
-    Print & <span>Graphics Studio</span>
-  </div>
-
+  <!-- ✅ EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
-    let count = 3;
-    const countdownElement = document.getElementById("countdown");
+    (function(){
+      emailjs.init("Npg6r-SUoggdEVscI"); // ✅ Your Public Key
+    })();
 
-    const interval = setInterval(() => {
-      countdownElement.classList.add("zoom");
+    // ✅ Agar account already bana hai to redirect
+    if(localStorage.getItem("accountCreated") === "true"){
+      window.location.href = "homepage.html";
+    }
 
-      setTimeout(() => {
-        countdownElement.classList.remove("zoom");
-        count--;
-        countdownElement.textContent = count;
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-        if (count === 0) {
-          clearInterval(interval);
-          setTimeout(() => {
-            // ✅ Check if user already signed up
-            if (localStorage.getItem("signedUp") === "true") {
-              window.location.href = "homepage.html"; // Home page
-            } else {
-              window.location.href = "signup.html"; // Signup page
-            }
-          }, 500);
-        }
-      }, 400);
-    }, 1000);
+      // Input values
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      // Send Email
+      emailjs.send("service_023e289", "template_de75ext", {
+        user_name: name,
+        user_email: email,
+        user_password: password
+      }).then(function(response) {
+        alert("✅ Sign Up successful! Redirecting to homepage...");
+        
+        // ✅ LocalStorage flag set
+        localStorage.setItem("accountCreated", "true");
+
+        // ✅ Redirect
+        window.location.href = "homepage.html"; 
+      }, function(error) {
+        alert("❌ Failed to send: " + JSON.stringify(error));
+      });
+    });
   </script>
-
 </body>
 </html>
