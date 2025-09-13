@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Account</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .signup-container {
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+      animation: fadeIn 0.7s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .brand {
+      text-align: center;
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 20px;
+      color: #202124;
+    }
+
+    .brand span {
+      color: #ff4500;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 8px;
+      color: #202124;
+    }
+
+    p {
+      text-align: center;
+      font-size: 14px;
+      margin-bottom: 25px;
+      color: #5f6368;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 6px;
+      font-weight: 500;
+      color: #013220;
+    }
+
+    .input-group input {
+      width: 93%;
+      padding: 12px;
+      border: 1px solid #dadce0;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: 0.2s;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .input-group input:focus {
+      border-color: #ff4500;
+      box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.2);
+      outline: none;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background: #ff4500;
+      color: #fff;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: #e03e00;
+    }
+
+    .login-link {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 18px;
+      color: #5f6368;
+    }
+
+    .login-link a {
+      color: #013220;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .login-link a:hover {
+      color: #ff4500;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-container">
+    <div class="brand">Print & Graphics <span>Studio</span></div>
+    <h2>Create Your Account</h2>
+    <p>Sign up to continue to your dashboard</p>
+
+    <form id="signupForm">
+      <div class="input-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Create a password" required>
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <div class="login-link">
+      Already have an account? <a href="login.html">Log In</a>
+    </div>
+  </div>
+
+  <script>
+    // Agar account already saved hai to direct homepage bhej do
+    const savedUser = JSON.parse(localStorage.getItem("userAccount"));
+    if (savedUser && savedUser.email) {
+      window.location.href = "index.html";
+    }
+
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim().toLowerCase();
+      const password = document.getElementById("password").value;
+
+      if (!name || !email || !password) {
+        alert("❌ Please fill in all fields!");
+        return;
+      }
+
+      // Agar userAccount already hai aur email same hai
+      if (savedUser && savedUser.email === email) {
+        alert("⚠️ This email is already registered. Redirecting...");
+        window.location.href = "index.html";
+        return;
+      }
+
+      // Naya account save kardo
+      const userData = { name, email, password };
+      localStorage.setItem("userAccount", JSON.stringify(userData));
+
+      alert("✅ Account created successfully! Redirecting...");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

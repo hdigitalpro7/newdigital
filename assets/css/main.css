@@ -600,6 +600,27 @@
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 30px;
 }
+.sign-up-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #28a745; /* Green button */
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.sign-up-btn:hover {
+  background: #218838; /* Darker green on hover */
+}
+
+.sign-up-btn i {
+  font-size: 18px;
+}
 
 /* Product Card */
 .product-card {
